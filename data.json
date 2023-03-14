@@ -1,0 +1,30 @@
+{
+  "_id": {
+    "$oid": "63bd17784ceeb7ccad911865"
+  },
+  "username": "2020",
+  "acno": 4587125,
+  "password": "2020",
+  "balance": 1542,
+  "transaction": [
+    {
+      "type": "Credit",
+      "fromAcno": "1000",
+      "toAcno": "4587125",
+      "amount": 200
+    },
+    {
+      "type": "Debit",
+      "fromAcno": "1000",
+      "toAcno": "4587125",
+      "amount": 200
+    },
+    {
+      "type": "Credit",
+      "fromAcno": "1000",
+      "toAcno": "4587125",
+      "amount": 200
+    }
+  ],
+  "__v": 2
+}
