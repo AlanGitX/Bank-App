@@ -1,0 +1,56 @@
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/dashboard">
+            <img
+              src="https://w7.pngwing.com/pngs/98/991/png-transparent-computer-icons-bank-icon-design-screenshot-bank-blue-angle-logo.png"
+              alt="Logo"
+              height="24"
+              class="d-inline-block align-text-top"
+            />
+            Bank app</a
+          >
+    </div>
+  </nav>
+
+<div>
+    <h1 class="text-primary">Transactions</h1>
+
+    <p>This is dummy text : Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nihil excepturi animi obcaecati aspernatur quam minus delectus, quasi tempore, commodi nemo repudiandae voluptatem quisquam quos ullam accusamus veniam eveniet consequuntur.</p>
+</div>
+<div class="row container">
+    <div class="col-4"> 
+        <h3>Transaction History</h3>
+    </div>
+    <div class="col-6 d-flex" style="justify-content: center;">
+        <p>Search by: &nbsp;</p>
+        <input (keyup)="search($event)" type="text" placeholder="Enter type">
+    </div>
+    <div class="col-2">
+        <button class="btn btn-primary"(click)="generatePDF()">Export</button>
+    </div>
+</div>
+<div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Type</th>
+            <th scope="col">From Acno</th>
+            <th scope="col">To Acno</th>
+            <th scope="col">Amount</th>
+          </tr>
+      
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of allTransactions | filer : searchKey : 'type'; let i = index">
+            <th scope="col">{{i+1}}</th>
+            <th scope="col">{{transaction.type}}</th>
+            <th scope="col">{{transaction.fromAcno}}</th>
+            <th scope="col">{{transaction.toAcno}}</th>
+            <th scope="col">{{transaction.amount}}</th>
+    
+    
+          </tr>
+        </tbody>
+      </table>
+</div >

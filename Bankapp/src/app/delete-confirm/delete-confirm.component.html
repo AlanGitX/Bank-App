@@ -1,0 +1,8 @@
+<div class="container confirm text-center mt-5" *ngIf="item ">
+
+    <h2>Are you sure ?</h2>
+    <p>Do you want to delete the account {{item}}?</p>
+    <button class="btn btn-primary" (click)="deleteAcc()">Yes</button>&nbsp;
+    <button class="btn btn-warning" (click)="cancelpro()">No</button>
+
+</div>

@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="row">
+    <div class="col-lg-6 text-center">
+        <img height="600px" class="m-5" src="https://freepngimg.com/save/15140-online-banking-png-hd/559x500" alt="">
+    </div>
+    <div class="col-lg-5 m-5 ">
+        <form [formGroup]="Loginform" (ngSubmit)="logindata()"class="border p-5 ">
+            
+            <div class="form-floating mb-2">
+                <input name="acno" formControlName="acno" type="text" class="form-control" id="floatingInput" placeholder="Account number">
+                <label for="floatingInput">Account Number</label>
+              </div>
+              <div class="text-danger mb-2" *ngIf="this.Loginform.get('acno')?.errors&&this.Loginform.get('acno')?.touched">Invalid Account number</div>
+              <div class="form-floating">
+                <input name="pswd" formControlName="pswd" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
+              <div class="text-danger mb-2" *ngIf="this.Loginform.get('pswd')?.errors&&this.Loginform.get('pswd')?.touched">Invalid Password</div>
+
+              <div>
+                {{errorMsg}}
+              </div>
+            <button class="btn btn-primary mt-4" type="submit">
+                Login
+                <span  *ngIf="sucessMsg" class="spinner-border text-dark" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </span>
+            </button>
+            &nbsp;
+            <p class="mt-4">
+                New user? click here to <a routerLink="/register">register</a>
+            </p>
+        </form>
+    </div>
+</div>

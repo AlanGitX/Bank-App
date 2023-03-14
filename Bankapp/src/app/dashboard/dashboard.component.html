@@ -1,0 +1,249 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid drop">
+    <a class="navbar-brand" href="#">
+      <img
+        src="https://w7.pngwing.com/pngs/98/991/png-transparent-computer-icons-bank-icon-design-screenshot-bank-blue-angle-logo.png"
+        alt="Logo"
+        height="24"
+        class="d-inline-block align-text-top"
+      />
+      Bank app</a
+    >
+    <div>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle drop"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                (click)="getBalance()"
+                class="dropdown-item"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample"
+                >Balance Check</a
+              >
+            </li>
+            <li><a class="dropdown-item" (click)="miniStatement()">Mini statement</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDeposit"
+                aria-controls="offcanvasDeposit"
+                >Deposit</a
+              >
+            </li>
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Fund transfer</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" (click)="deleteAccount()">
+                <i class="fa-solid fa-trash"></i> &nbsp; Delete</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i> &nbsp; Signout</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- loading  -->
+
+<div *ngIf="!condition" class=" gif">
+  <img src="https://hackernoon.com/images/0*4Gzjgh9Y7Gu8KEtZ.gif" alt="" height="200px">
+  <p>Please wait while signing out</p>
+</div>
+
+
+<!-- deletespinner -->
+<div *ngIf="deleteSpinnerdiv" class=" gif">
+  <img src="https://hackernoon.com/images/0*4Gzjgh9Y7Gu8KEtZ.gif" alt="" height="200px">
+  <p>Please wait while deleting the account</p>
+</div>
+
+
+<!-- delete confirmation -->
+<div class="container d-flex" style="justify-content: center;">
+  <app-delete-confirm (ondeleteAcc)="onDelete($event)" (oncancelpro)="onCancel()" [item]="acno"></app-delete-confirm>
+
+</div>
+
+
+<!-- 
+central area -->
+<div *ngIf="condition && confirmMsg">
+  <div class="row">
+    <div class="col-6" style="padding: 80px">
+      <h1 style="margin-top: 100px">Welcome {{ user }}</h1>
+
+      <label style="text-align: justify"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima porro
+        sapiente at officiis doloribus rerum quaerat, esse eius nostrum earum
+        quisquam quibusdam? Facilis, excepturi laboriosam!</label
+      >
+
+      <!-- //collapse -->
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat
+          assumenda quod rerum. Expedita dolorem beatae deserunt laborum, rerum
+          iusto perferendis dicta illum doloribus autem hic.
+        </div>
+      </div>
+
+      <button
+        (click)="collapse()"
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseExample"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Read <span *ngIf="Iscollapse">more</span>
+        <span *ngIf="!Iscollapse">less</span>
+      </button>
+    </div>
+    <div class="col-6">
+      <img
+        height="600px"
+        class="m-5"
+        src="https://freepngimg.com/save/15140-online-banking-png-hd/559x500"
+        alt=""
+      />
+    </div>
+  </div>
+</div>
+
+<!-- offcanvas -->
+
+<div
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Account Balance</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <h5 style="margin-top: 100px">Dear {{ user }}</h5>
+      <p>
+        Your current account {{ currentAcno }} balance is :
+        <span>{{ balance }}</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvasDeposit"
+  aria-labelledby="offcanvasDeposit"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasDeposit">Deposit Funds</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <img src="data:image/png;base64,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" alt="">
+      <h1> Deposit</h1>
+
+      <form [formGroup]="depositForm" (ngSubmit)="depositdata()"class="border p-5 ">
+            
+        <div class="form-floating mb-2">
+            <input name="amount" formControlName="amount" type="text" class="form-control" id="floatingInput" placeholder="Account number">
+            <label for="floatingInput">Account Number</label>
+
+            <div class="text-danger mb-2" *ngIf="this.depositForm.get('amount')?.errors&&this.depositForm.get('amount')?.touched">Invalid  amount</div>
+            <div class="text-danger">{{depositMsg}}</div>
+            <button (click)="showconfetti($event.target)"
+
+            class="btn btn-primary mt-4" type="submit">Deposit</button>
+
+          </div>
+          </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Fund transfer</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clearfundTransferform()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="fundtransferForm" class="border p-5 ">
+            
+          <div class="form-floating mb-2">
+              <input name="acno" formControlName="acno" type="text" class="form-control" id="floatingInput" placeholder="Account number">
+              <label for="floatingInput">Credit Account Number</label>
+            </div>
+            <div class="text-danger mb-2" *ngIf="this.fundtransferForm.get('acno')?.errors&&this.fundtransferForm.get('acno')?.touched">Invalid Account number</div>
+            <div class="form-floating">
+              <input name="pswd" formControlName="pswd" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="text-danger mb-2" *ngIf="this.fundtransferForm.get('pswd')?.errors&&this.fundtransferForm.get('pswd')?.touched">Invalid Account number</div>
+
+            <div class="form-floating mb-2">
+              <input name="acno" formControlName="amount" type="text" class="form-control" id="floatingInput" placeholder="Account number">
+              <label for="floatingInput">Credit amount</label>
+            </div>
+            <div class="text-danger mb-2" *ngIf="this.fundtransferForm.get('amount')?.errors&&this.fundtransferForm.get('amount')?.touched">Invalid amount</div>
+
+
+
+      </form>
+      </div>
+      <div class="text-success container">
+        {{Fundsuccessmessage}}
+      </div>
+      <div class="text-success container">
+        <div class="text-danger" >
+        {{Funderrormessage}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearfundTransferform()">Close</button>
+        <button type="button" (click)="transfer()" class="btn btn-primary">Transfer</button>
+      </div>
+    </div>
+  </div>
+</div>

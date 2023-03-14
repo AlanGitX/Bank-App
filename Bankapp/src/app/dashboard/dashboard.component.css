@@ -1,0 +1,14 @@
+.drop{
+    margin-right: 50px;
+}
+.gif{
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.gif img{
+    width: auto;
+}
